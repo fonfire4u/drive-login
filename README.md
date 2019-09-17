@@ -6,7 +6,9 @@ I tested on windows 10.
 Before run.
 Install JAVA JDK.
 and add Windows Environment Variables of
+
 JAVA_HOME : Folder of JDK 
+
 Example : C:\Program Files\Java\jdk-12.0.2
 
 Test MVN Environment
