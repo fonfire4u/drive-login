@@ -12,7 +12,9 @@ JAVA_HOME : Folder of JDK
 Example : C:\Program Files\Java\jdk-12.0.2
 
 Test MVN Environment
+
 on project folder run mvnw -v
+
 it should be show like this.
 
 Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-04T02:39:06+07:00)
