@@ -17,12 +17,15 @@ import com.syncinator.kodi.login.KodiLoginCacheManager;
 import com.syncinator.kodi.login.model.Pin;
 import com.syncinator.kodi.login.oauth.provider.Provider;
 import com.syncinator.kodi.login.util.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class AuthorizeController {
 	
 	@Autowired
 	private ApplicationContext context;
+	private static final Logger log = LoggerFactory.getLogger(Provider.class);
 	
 	@RequestMapping("/signin/{pin}")
 	public String signin(@PathVariable String pin, Model model, HttpServletRequest request) throws IOException {
@@ -34,10 +37,17 @@ public class AuthorizeController {
 		Cache<String, Pin> pinCache = KodiLoginCacheManager.getPinCache();
 		pin = pin.replace('O', '0');
 		Pin storedPin = pinCache.get(pin.toLowerCase());
-		if (storedPin != null && storedPin.getOwner().equals(Utils.getRemoteAddress(request))) {
+		if (storedPin != null){
+			log.info("******************************Fon.Log : storedPin=" + storedPin.toString());
+			log.info("******************************Fon.Log : storedPin.getOwner=" + storedPin.getOwner().toString());
+			log.info("******************************Fon.Log : Utils.getRemoteAddress(request)=" + Utils.getRemoteAddress(request).toString());
+		}
+		//&& storedPin.getOwner().equals(Utils.getRemoteAddress(request))
+		if (storedPin != null ) {
 			Provider connector = context.getBean(Provider.NAME_PREFIX + storedPin.getProvider(), Provider.class);
 			return "redirect:" + connector.authorize(pin);
 		}
+		log.info("******************************Fon.Log : Not goto google login");
 		model.addAttribute("errorMessage", "error.pin.invalid");
 		return "index";
 	}
