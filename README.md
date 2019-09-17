@@ -44,4 +44,4 @@ Step to run
 2. update CLIENT_ID and CLIENT_SECRET on src/main/resources/application.properties 
 3. execute run.bat
 4. Add account on addon
-5. goto http://xx.xx.xx.xx:8080 for authen
+5. goto http://xx.xx.xx.xx:8080 or http://localhost:8080 for authen
