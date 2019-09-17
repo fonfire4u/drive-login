@@ -2,6 +2,8 @@
 Edit for local login
 
 I tested on windows 10.
+I never use JAVA or MAVEN before.
+Maybe it have use bad command.
 
 Before run.
 Install JAVA JDK.
